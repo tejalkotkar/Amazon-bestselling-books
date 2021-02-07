@@ -10,8 +10,9 @@ This project is achieved by using:
 HTML, CSS, javascript combined with D3, Python Flask API, Jupyter Notebook
 
 #### Additional Libraries used for amination:
-Anime.js (https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js)
-Animate.min.css (https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css)
+[Anime.js](https://animejs.com/)
+
+[Animate.min.css](https://animate.style/)
 
 ### Dataset:
 
@@ -32,6 +33,7 @@ However for almost all years, most of the top books falls under user rating of 4
 ![Default_view](Best-Selling-Books/Images/Img2.png)
 
 2) Relationship between : 
+
    a) Price & User rating
      The r-squared value for Price V/S User Rating: -0.13.
      This R value shows weak correlation between price and user rating which shows user rating doesn't depends on the book price.

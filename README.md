@@ -26,6 +26,7 @@ The first chart illustrates the top 10 books by review and second chart illustra
 From both the charts we can not say that having higher reviews will have high user ratings as well.
 However for almost all years, most of the top books falls under user rating of 4.5-4.8		
 ![Default_view](Images/Img1.png)
+
 ![Default_view](Images/Img2.png)
 
 2) Relationship between : 

@@ -12,22 +12,22 @@
 <!---Main Section---->
   <div class="mainsectionp">
     <div class="row">
-        <div class="col-md-2">  
+        <div class="col-md-2 col-sm-12 col-xs-12">  
             <div class ="side-bar" id="sticky-sidebar">
               <div class="sticky-top">
                 <nav class="nav flex-column">
                     <a class="navbar-brand"><img id= "main-img" src="{{ url_for('static', filename='Images/Bestseller.png') }}", class = "img img-responsive", alt= "Bestseller"></a>
                     <a class="nav-link" href="{{ url_for('welcome') }}">Home</a>
                     <a class="nav-link" href="{{ url_for('relationship') }}">Relationship</a>
-                    <a class="nav-link" href="{{ url_for('counts') }}">Counts</a>
                     <a class="nav-link" href="{{ url_for('authors') }}">Top authors</a>
+                    <a class="nav-link" href="{{ url_for('counts') }}">Counts</a>
                     <a class="nav-link" target = "_blank" href= "https://github.com/Savita0807/Project-2-Amazon-bestselling-books">Github</a>
                     <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
                 </nav>
               </div>
             </div>
         </div>      
-        <div class="col-md-9">
+        <div class="col-md-9 col-sm-12 col-xs-12">
             <div class = "Temp-textbox">
               <h3 class = "Rel_title_1"> Relationship between Price & User rating </h3>
               <hr>

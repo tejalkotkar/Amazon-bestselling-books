@@ -13,27 +13,29 @@
 <!---Main Section---->
   <div class="mainsectionp">
     <div class="row">
-        <div class="col-md-2">  
+        <div class="col-md-2 col-sm-12 col-xs-12">  
             <div class ="side-bar" id="sticky-sidebar">
               <div class="sticky-top">
                 <nav class="nav flex-column">
                     <a class="navbar-brand"><img id= "main-img" src="{{ url_for('static', filename='Images/Bestseller.png') }}", class = "img img-responsive", alt= "Bestseller"></a>
                     <a class="nav-link" href="{{ url_for('welcome') }}">Home</a>
                     <a class="nav-link" href="{{ url_for('relationship') }}">Relationship</a>
-                    <a class="nav-link" href="{{ url_for('counts') }}">Counts</a>
                     <a class="nav-link" href="{{ url_for('authors') }}">Top authors</a>
+                    <a class="nav-link" href="{{ url_for('counts') }}">Counts</a>
                     <a class="nav-link" target = "_blank" href= "https://github.com/Savita0807/Project-2-Amazon-bestselling-books">Github</a>
                     <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
                 </nav>
               </div>
             </div>
         </div>      
-        <div class="col-md-9">
+        <div class="col-md-9 col-sm-12 col-xs-12">
             <div class = "Author-textbox">
               <h3 class = "Author_title"> Authors with highest reviews and total price of their books</h3>
               <hr>
               <p>
-                  
+                 Suzanne Collins top the chart with hightest reviews (278329) for Hunger Games Series.
+                  <br>
+                 Don Miguel Ruiz is at the bottom of the chart with 139848 reviews for The Four Agreements: A Practical Guide To Personal Freedom.
               </p>
               <div id= "Auth-bar">
                 <!-- Author chart will come here -->

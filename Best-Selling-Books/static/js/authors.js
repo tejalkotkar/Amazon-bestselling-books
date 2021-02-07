@@ -22,7 +22,7 @@ var svg = d3
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-// d3.csv("assests/data/bestsellers_with_categories.csv").then(function(booksData) {
+
 fetch('/all_books')
     .then(function (response) {
         return response.json();
@@ -39,17 +39,31 @@ fetch('/all_books')
 
         // filter data by author
         Authors.forEach(author => {
+            authorBooks = [];
+
             filterdata = booksData.filter(book => book.Author == author);
+
             var totalPrice = filterdata.reduce(function (prev, cur) {
                 return prev + cur.Price;
             }, 0);
+
             var totalReview = filterdata.reduce(function (prev, cur) {
                 return prev + cur.Reviews;
             }, 0);
+
+            // Filterring books for author
+            filterdata.forEach(Abook => {
+                authorBooks.push(Abook.Name)
+            });
+
+            // Getting only unique books
+            uniqBooks = [...new Set(authorBooks)];
+
             var dict = {
                 "Author": author,
                 "TotalP": totalPrice,
-                "TotalR": totalReview
+                "TotalR": totalReview,
+                "Books" : uniqBooks
             }
             Author_data.push(dict);
         });
@@ -77,11 +91,6 @@ fetch('/all_books')
         var bottomAxis = d3.axisBottom(xScale)
         var leftAxis = d3.axisLeft(yLinearScale1);
         var rightAxis = d3.axisRight(yLinearScale2);
-
-        // // Add bottomAxis
-        // chartGroup.append("g")
-        //     .attr("transform", `translate(0, ${height})`)
-        //     .call(bottomAxis);
 
         // CHANGE THE TEXT TO THE CORRECT COLOR
         chartGroup.append("g")
@@ -117,25 +126,52 @@ fetch('/all_books')
 
             //Circles
         var selectCircle = chartGroup.selectAll("circle").data(filtered_books);
-        selectCircle.enter().append("circle")
+        var pCircle = selectCircle.enter().append("circle")
         .attr("class", "circle")
         .attr("r", 3.5)
         .attr("cx", d => xScale(d.Author))
         .attr("cy", d => yLinearScale2(d.TotalP));
         
     // circle for review
-        selectCircle.enter().append("circle")
+        var rCircle = selectCircle.enter().append("circle")
         .attr("class", "circle")
         .attr("r", 3.5)
         .attr("cx", d => xScale(d.Author))
         .attr("cy", d => yLinearScale1(d.TotalR));
 
+        var tip1 = d3.tip()
+        .attr("class","d3-tip")
+        .offset([80, -60])
+        .html(function(d){
+            return(`Reviews : ${d.TotalR}<br>Books : ${d.Books}`);
+        });
+        
+        rCircle.call(tip1);
+
+        rCircle.on("mouseover", function(data){
+            tip1.show(data);
+        }).on("mouseout",function(data){
+            tip1.hide(data);
+        });
+
+        var tip2 = d3.tip()
+            .attr("class","d3-tip")
+            .offset([80, -60])
+            .html(function(d){
+                return(`Total Price : ${d.TotalP}`);
+            });
+            
+        pCircle.call(tip2);
+
+        pCircle.on("mouseover", function(data){
+            tip2.show(data);
+        }).on("mouseout",function(data){
+            tip2.hide(data);
+        });
+
         chartGroup.append("text")
             .attr("transform", `translate(${width / 2}, ${height + margin.top + 80})`)
             .classed("authorsActive atext", true)
-            // .attr("text-anchor", "middle")
-            // .attr("font-size", "16px")
-            // .attr("fill", "black")
             .text("Authors");
 
         chartGroup.append("text")
@@ -143,9 +179,6 @@ fetch('/all_books')
             .attr("y", 0 - margin.left +120)
             .attr("x", 0 - (height / 2))
             .classed("reviewActive atext", true)
-            // .attr("text-anchor", "middle")
-            // .attr("font-size", "16px")
-            // .attr("fill", "green")
             .text("Total Reviews");
 
         chartGroup.append("text")
@@ -153,9 +186,6 @@ fetch('/all_books')
             .attr("y", 0 - margin.left + width + margin.right + 190)
             .attr("x", 0 - (height / 2))
             .classed("priceActive atext", true)
-            // .attr("text-anchor", "middle")
-            // .attr("font-size", "16px")
-            // .attr("fill", "orange")
             .text("Total Price");
 
         chartGroup.append("g")

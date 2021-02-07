@@ -275,7 +275,7 @@ getPlots=(filterdata)=>{
         .attr("class","d3-tip")
         .offset([80, -60])
         .html(function(d){
-            return (`Author : ${d.Author}`);
+            return (`Reviews : ${d.Reviews}<br>Author : ${d.Author}`);
     });
 
     barGroup.call(tooltip);
@@ -290,9 +290,9 @@ getPlots=(filterdata)=>{
     }).on("mouseout", function(data) {
         d3.select(this)
             .transition()
-            .duration(500)
+            .duration(300)
             .attr("fill", "blue");
-        toolTip.hide(data);
+        tooltip.hide(data);
     });
 
     // Plot chart2

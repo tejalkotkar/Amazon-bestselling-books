@@ -1,6 +1,11 @@
 # Project-2-Amazon-bestselling-books
 
 In the project we have built intractive dashboard to analyze Amazon's Top bestselling books from 2009 to 2019.
+Group members:
+1) Tejal Kotkar
+2) Savita Hirilall
+3) Hibo Dahir
+4) Phanit Tameerug
 
 This dataset have Amazon customer's ratings and review 550 books categorized into fiction and non-fiction.
 
